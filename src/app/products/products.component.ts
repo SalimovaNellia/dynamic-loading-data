@@ -4,7 +4,7 @@ import { HttpResponse } from '@angular/common/http';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import {Product} from '../product';
+import { Product } from '../model/product';
 
 @Component({
   selector: 'app-products',
