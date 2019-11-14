@@ -5,19 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule,
-         MatIconModule,
-         MatCardModule,
-         MatButtonModule,
-         MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule,
+  MatButtonModule,
+  MatProgressSpinnerModule, MatButtonToggleModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductsComponent } from './services/products/products.component';
+import { ProductsComponent } from './products/products.component';
+import { HomeComponent } from './home/home.component';
+import { SwitchLayoutComponent } from './switch-layout/switch-layout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
+    ProductsComponent,
+    HomeComponent,
+    SwitchLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +34,8 @@ import { ProductsComponent } from './services/products/products.component';
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
