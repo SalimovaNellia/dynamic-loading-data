@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
-import {throwError} from 'rxjs';
-import {catchError, retry, tap} from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError, retry, tap } from 'rxjs/operators';
+import { Product } from '../product';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class DataService {
   }
 
   public sendGetRequest() {
-    return this.httpClient.get(this.REST_API_SERVER, { params: new HttpParams({fromString: "_page=1&_limit=8"}), observe: "response"})
+    return this.httpClient.get<Product[]>(this.REST_API_SERVER, { params: new HttpParams({fromString: "_page=1&_limit=8"}), observe: "response"})
       .pipe(retry(3),
         catchError(this.handleError),
         tap(res => {
@@ -62,7 +63,7 @@ export class DataService {
   }
 
   public sendGetRequestToUrl(url: string) {
-    return this.httpClient.get(url, { observe: "response"}).pipe(retry(3), catchError(this.handleError), tap(res => {
+    return this.httpClient.get<Product[]>(url, { observe: "response"}).pipe(retry(3), catchError(this.handleError), tap(res => {
       console.log(res.headers.get('Link'));
       this.parseLinkHeader(res.headers.get('Link'));
     }));

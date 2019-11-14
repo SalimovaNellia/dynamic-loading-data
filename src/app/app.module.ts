@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { SwitchLayoutComponent } from './switch-layout/switch-layout.component';
+import { CookieService } from 'ngx-cookie-service';
+import { DisplayToggleComponent } from './display-toggle/display-toggle.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { SwitchLayoutComponent } from './switch-layout/switch-layout.component';
     AppComponent,
     ProductsComponent,
     HomeComponent,
-    SwitchLayoutComponent
+    SwitchLayoutComponent,
+    DisplayToggleComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { SwitchLayoutComponent } from './switch-layout/switch-layout.component';
     BrowserAnimationsModule,
     MatButtonToggleModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

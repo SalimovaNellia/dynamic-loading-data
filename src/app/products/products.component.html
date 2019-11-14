@@ -9,13 +9,13 @@
                            aria-label="Display"
                            class="toggle-group"
                            #group="matButtonToggleGroup"
-                           [value]="displayVal"
+                           [value]="cookieDisplayValue"
                            (change)="onDisplayChange(group.value)">
     <mat-button-toggle value="card"><mat-icon color="primary">view_module</mat-icon></mat-button-toggle>
     <mat-button-toggle value="list"><mat-icon color="primary">list</mat-icon></mat-button-toggle>
   </mat-button-toggle-group>
 
-  <div class="products-wrap" [ngClass]="(displayVal == 'list') ? 'productsList' : 'productsCards'">
+  <div class="products-wrap" [ngClass]="(cookieDisplayValue == 'list') ? 'productsList' : 'productsCards'">
 
     <mat-spinner *ngIf="loading && products.length === 0"></mat-spinner>
 
