@@ -1,1 +1,12 @@
-<p>display-toggle works!</p>
+<div class="display-toggle-wrap">
+  <mat-button-toggle-group
+                           name="display"
+                           aria-label="Display"
+                           class="toggle-group"
+                           #group="matButtonToggleGroup"
+                           [value]="layout"
+                           (change)="onDisplayChange(group.value)">
+    <mat-button-toggle value="card"><mat-icon color="primary">view_module</mat-icon></mat-button-toggle>
+    <mat-button-toggle value="list"><mat-icon color="primary">list</mat-icon></mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

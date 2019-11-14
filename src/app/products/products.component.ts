@@ -15,20 +15,11 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
   loading: boolean;
-  cookieDisplayValue: string;
+  layout: LayoutMode = 'card';
 
-  constructor(private dataService: DataService,
-              private cookieService: CookieService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    if(this.cookieService.get('cookieDisplayValue')) {
-      this.cookieDisplayValue = this.cookieService.get('cookieDisplayValue');
-    }
-  }
-
-  onDisplayChange(displayValue) {
-    this.cookieDisplayValue = displayValue;
-    this.cookieService.set('cookieDisplayValue', displayValue);
   }
 
   getProducts() {
@@ -51,4 +42,12 @@ export class ProductsComponent implements OnInit {
   onDeleteProduct(id: number) {
       this.products = this.products.filter(v => v.id != id);
   }
+
+  changeLayout(event: LayoutMode) {
+    this.layout = event;
+  }
 }
+
+export type LayoutMode = 'card' | 'list';
+
+

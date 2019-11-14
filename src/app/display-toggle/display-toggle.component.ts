@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { LayoutMode } from '../products/products.component';
 
 @Component({
   selector: 'app-display-toggle',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./display-toggle.component.css']
 })
 export class DisplayToggleComponent implements OnInit {
+  @Input() layout: LayoutMode = 'card';
+  @Output() layoutChanged = new EventEmitter<LayoutMode>();
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
+    if(this.cookieService.get('cookieDisplayValue')) {
+      this.layout = this.cookieService.get('cookieDisplayValue') as LayoutMode;
+    }
+  }
+
+  onDisplayChange(displayValue: LayoutMode) {
+    this.layout = displayValue;
+    this.cookieService.set('cookieDisplayValue', displayValue);
+    this.layoutChanged.next(displayValue);
   }
 
 }

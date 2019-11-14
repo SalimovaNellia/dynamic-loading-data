@@ -4,20 +4,13 @@
     <button mat-raised-button color="primary" class="load-btn" (click)="getProducts()">Load Products</button>
   </div>
 
-  <div class="display-toggle-wrap">
-    <mat-button-toggle-group *ngIf="products.length > 0"
-                             name="display"
-                             aria-label="Display"
-                             class="toggle-group"
-                             #group="matButtonToggleGroup"
-                             [value]="cookieDisplayValue"
-                             (change)="onDisplayChange(group.value)">
-      <mat-button-toggle value="card"><mat-icon color="primary">view_module</mat-icon></mat-button-toggle>
-      <mat-button-toggle value="list"><mat-icon color="primary">list</mat-icon></mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
+  <app-display-toggle  *ngIf="products.length != 0"
+                       (layoutChanged)="changeLayout($event)"
+                       [layout]="layout">
 
-  <div class="products-wrap" [ngClass]="(cookieDisplayValue == 'list') ? 'productsList' : 'productsCards'">
+  </app-display-toggle>
+
+  <div class="products-wrap" [ngClass]="(layout == 'list') ? 'productsList' : 'productsCards'">
 
     <mat-spinner *ngIf="loading && products.length === 0"></mat-spinner>
 
