@@ -17,16 +17,20 @@ import {
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {by} from 'protractor';
 import {By} from '@angular/platform-browser';
+import {instance, mock, when} from 'ts-mockito';
+import {CookieService} from 'ngx-cookie-service';
+import {of} from 'rxjs';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
   let fixture: ComponentFixture<ProductsComponent>;
 
+  const cookieServiceMock = mock(CookieService);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         ProductsComponent,
-        DisplayToggleComponent,
         MatSpinner,
         MatCardTitle,
         MatCardSubtitle,
@@ -36,9 +40,13 @@ describe('ProductsComponent', () => {
         MatCard,
         MatButtonToggleGroup,
         MatIcon,
-        MatButtonToggle
+        MatButtonToggle,
+        DisplayToggleComponent
       ],
-      providers: [ DataService ],
+      providers: [
+        DataService,
+        {provide: CookieService, useFactory: () => instance(cookieServiceMock)},
+      ],
       imports: [ MatRippleModule, HttpClientTestingModule ]
     })
     .compileComponents();
@@ -54,11 +62,9 @@ describe('ProductsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should change layout mode on button click', () => {
+  it('should show cards layout by default', () => {
     const productsWrapElement = fixture.debugElement.query(By.css('.products-wrap'));
-    expect(productsWrapElement.classes['productsCards']).toBeTruthy()
+    expect(productsWrapElement.classes['productsCards']).toBeTruthy();
+    expect(productsWrapElement.classes['productsList']).toBeFalsy();
   });
 });
-// when(biddingServiceMock.deleteBid(anything(), anything())).thenReturn(of(noop()));
-// const biddingServiceMock = mock(BiddingService);
-// {provide: BiddingService, useFactory: () => instance(biddingServiceMock)},

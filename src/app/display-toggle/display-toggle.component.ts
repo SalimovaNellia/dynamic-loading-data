@@ -16,10 +16,10 @@ export class DisplayToggleComponent implements OnInit {
   ngOnInit() {
     if(this.cookieService.get('cookieDisplayValue')) {
       this.layout = this.cookieService.get('cookieDisplayValue') as LayoutMode;
-      this.layoutChanged.next(this.layout);
     } else {
-      this.layout = 'card'
+      this.layout = 'card';
     }
+    this.layoutChanged.next(this.layout);
   }
 
   onDisplayChange(displayValue: LayoutMode) {
