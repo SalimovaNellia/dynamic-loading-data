@@ -15,11 +15,12 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
   loading: boolean;
-  layout: LayoutMode = 'card';
+  layout: LayoutMode;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+
   }
 
   getProducts() {
@@ -45,6 +46,7 @@ export class ProductsComponent implements OnInit {
 
   changeLayout(event: LayoutMode) {
     this.layout = event;
+    console.log('event', event)
   }
 }
 

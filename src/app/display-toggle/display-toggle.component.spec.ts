@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DisplayToggleComponent } from './display-toggle.component';
+import {MatButtonToggle, MatButtonToggleGroup, MatIcon, MatRipple, MatRippleModule} from '@angular/material';
+import {CookieService} from 'ngx-cookie-service';
 
 describe('DisplayToggleComponent', () => {
   let component: DisplayToggleComponent;
@@ -8,7 +10,9 @@ describe('DisplayToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DisplayToggleComponent ]
+      declarations: [ DisplayToggleComponent, MatButtonToggleGroup, MatIcon, MatButtonToggle ],
+      providers: [ CookieService ],
+      imports: [ MatRippleModule ]
     })
     .compileComponents();
   }));

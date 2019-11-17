@@ -10,12 +10,12 @@ import {
   MatIconModule,
   MatCardModule,
   MatButtonModule,
-  MatProgressSpinnerModule, MatButtonToggleModule
+  MatProgressSpinnerModule,
+  MatButtonToggleModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
-import { SwitchLayoutComponent } from './switch-layout/switch-layout.component';
 import { CookieService } from 'ngx-cookie-service';
 import { DisplayToggleComponent } from './display-toggle/display-toggle.component';
 
@@ -25,7 +25,6 @@ import { DisplayToggleComponent } from './display-toggle/display-toggle.componen
     AppComponent,
     ProductsComponent,
     HomeComponent,
-    SwitchLayoutComponent,
     DisplayToggleComponent
   ],
   imports: [
